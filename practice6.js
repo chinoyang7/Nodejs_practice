@@ -16,13 +16,11 @@ http
   .createServer(function(request, response) {
     const pathName = url.parse(request.url).pathname;
     const queryData = url.parse(request.url, true).query;
+    let getuser = pathName.split("/")[2]; // this will be 5
 
-    var url2 = request.url; //this will be /user/5/docs
-    var getuser = pathName.split("/")[2]; // this will be 5
     response.writeHead(200, { "Content-Type": "text/html" });
     for (let index = 0; index < user.length; index++) {
       if (getuser == user[index].userId) {
-        // response.end("Id is = " + getuser);
         response.end(JSON.stringify(user[index]));
       }
       console.log(getuser + "/" + user[index].userId);
